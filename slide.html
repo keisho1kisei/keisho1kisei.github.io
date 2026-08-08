@@ -107,11 +107,17 @@ html,body{height:100%;overflow:hidden;background:#000;
   font-weight:700;color:var(--gold);letter-spacing:.3em;
   animation:pulse 2.4s ease-in-out infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.45}}
-.omenu{margin-top:5vmin;display:flex;flex-direction:column;gap:1.5vmin;
-  font-size:2.1vmin;color:#cdd6e6}
-.okey{display:inline-block;min-width:9vmin;margin-right:1.6vmin;padding:.5vmin 1.6vmin;
+.omenu{margin-top:5vmin;display:flex;gap:2.4vmin;justify-content:center;flex-wrap:wrap}
+.obtn{display:flex;align-items:center;gap:1.4vmin;cursor:pointer;
+  background:rgba(255,255,255,.06);border:2px solid var(--gold);border-radius:1.2vmin;
+  padding:1.8vmin 3.4vmin;color:#fff;font-family:"Noto Sans JP",sans-serif;
+  font-size:2.6vmin;font-weight:700;transition:background .2s,transform .2s;
+  -webkit-appearance:none;touch-action:manipulation}
+.obtn:hover,.obtn:active{background:var(--gold);color:var(--navy);transform:translateY(-2px)}
+.obtn:hover .okey,.obtn:active .okey{border-color:var(--navy);color:var(--navy)}
+.okey{display:inline-block;padding:.5vmin 1.6vmin;
   border:1px solid var(--gold);border-radius:.8vmin;color:var(--gold);
-  font-weight:700;font-size:1.8vmin}
+  font-weight:700;font-size:1.7vmin;transition:color .2s,border-color .2s}
 
 /* ===== オープニング動画 ===== */
 #openvid{position:fixed;inset:0;z-index:210;background:#000;display:none;
@@ -138,8 +144,12 @@ html,body{height:100%;overflow:hidden;background:#000;
   <div class="odate">2026年8月14日（金）　ラソールガーデン札幌</div>
   <div class="startbtn">S T A R T</div>
   <div class="omenu">
-    <div><span class="okey">Enter</span>國田さんからのメッセージを再生</div>
-    <div><span class="okey">S</span>スライドショーを開始</div>
+    <button type="button" class="obtn" id="btnMovie">
+      <span class="okey">Enter</span>メッセージ
+    </button>
+    <button type="button" class="obtn" id="btnSlide">
+      <span class="okey">S</span>スライド
+    </button>
   </div>
 </div>
 
@@ -942,7 +952,13 @@ function playOpening(){
   var pr=OV.play(); if(pr&&pr.catch) pr.catch(function(){});
 }
 OV.addEventListener('ended', startShow);
-OP.addEventListener('click', playOpening);
+document.getElementById('btnMovie').addEventListener('click',function(e){
+  e.stopPropagation(); playOpening(); });
+document.getElementById('btnSlide').addEventListener('click',function(e){
+  e.stopPropagation(); startShow(); });
+// 動画画面をタップしても再生を試みる（スマホ対策）
+OVW.addEventListener('click',function(){
+  if(OV.paused){ var p=OV.play(); if(p&&p.catch) p.catch(function(){}); } });
 document.addEventListener('keydown',function(e){
   if(!started){
     if(e.key==='Enter'){ e.preventDefault(); playOpening(); return; }

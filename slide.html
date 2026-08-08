@@ -107,17 +107,26 @@ html,body{height:100%;overflow:hidden;background:#000;
   font-weight:700;color:var(--gold);letter-spacing:.3em;
   animation:pulse 2.4s ease-in-out infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.45}}
-.omenu{margin-top:5vmin;display:flex;gap:2.4vmin;justify-content:center;flex-wrap:wrap}
-.obtn{display:flex;align-items:center;gap:1.4vmin;cursor:pointer;
-  background:rgba(255,255,255,.06);border:2px solid var(--gold);border-radius:1.2vmin;
-  padding:1.8vmin 3.4vmin;color:#fff;font-family:"Noto Sans JP",sans-serif;
-  font-size:2.6vmin;font-weight:700;transition:background .2s,transform .2s;
+.otap{margin-top:2vmin;font-size:1.9vmin;color:rgba(255,255,255,.55)}
+.omenu{margin-top:3vmin;display:flex;gap:2.4vmin;justify-content:center;flex-wrap:wrap}
+.obtn{display:flex;align-items:center;gap:1.6vmin;cursor:pointer;
+  background:var(--gold);border:none;border-radius:1.4vmin;
+  padding:2.4vmin 5vmin;color:var(--navy);font-family:"Noto Sans JP",sans-serif;
+  font-size:3.2vmin;font-weight:700;
+  box-shadow:0 .8vmin 2.2vmin rgba(0,0,0,.4);
+  transition:transform .15s,box-shadow .15s,filter .15s;
   -webkit-appearance:none;touch-action:manipulation}
-.obtn:hover,.obtn:active{background:var(--gold);color:var(--navy);transform:translateY(-2px)}
-.obtn:hover .okey,.obtn:active .okey{border-color:var(--navy);color:var(--navy)}
-.okey{display:inline-block;padding:.5vmin 1.6vmin;
-  border:1px solid var(--gold);border-radius:.8vmin;color:var(--gold);
-  font-weight:700;font-size:1.7vmin;transition:color .2s,border-color .2s}
+.obtn:hover{filter:brightness(1.12);transform:translateY(-.4vmin);
+  box-shadow:0 1.4vmin 3vmin rgba(0,0,0,.5)}
+.obtn:active{transform:translateY(.2vmin) scale(.98);
+  box-shadow:0 .3vmin 1vmin rgba(0,0,0,.4)}
+.obtn.sub{background:transparent;border:2px solid var(--gold);color:var(--gold);
+  box-shadow:none;font-size:2.6vmin;padding:2vmin 4vmin}
+.obtn.sub:hover{background:rgba(179,146,78,.18)}
+.okey{display:inline-block;padding:.4vmin 1.4vmin;
+  background:rgba(26,42,74,.18);border-radius:.7vmin;
+  font-weight:700;font-size:1.6vmin;opacity:.75}
+.obtn.sub .okey{background:rgba(179,146,78,.2)}
 
 /* ===== オープニング動画 ===== */
 #openvid{position:fixed;inset:0;z-index:210;background:#000;display:none;
@@ -143,12 +152,13 @@ html,body{height:100%;overflow:hidden;background:#000;
   <div class="dia"><i></i><i></i><i></i></div>
   <div class="odate">2026年8月14日（金）　ラソールガーデン札幌</div>
   <div class="startbtn">S T A R T</div>
+  <div class="otap">下のボタンを押してください</div>
   <div class="omenu">
     <button type="button" class="obtn" id="btnMovie">
-      <span class="okey">Enter</span>メッセージ
+      ▶　メッセージ<span class="okey">Enter</span>
     </button>
-    <button type="button" class="obtn" id="btnSlide">
-      <span class="okey">S</span>スライド
+    <button type="button" class="obtn sub" id="btnSlide">
+      スライド<span class="okey">S</span>
     </button>
   </div>
 </div>
